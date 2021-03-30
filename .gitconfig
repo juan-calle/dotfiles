@@ -1,0 +1,67 @@
+[alias]
+aa = add --all
+br = branch
+bra = branch --all
+brd = branch -d
+brD = branch -D
+brm = branch -m
+ci = commit
+cia = commit --amend
+cis = commit --squash
+co = checkout
+cob = checkout -b
+cod = checkout develop
+com = checkout main
+f = fetch
+l = pull
+last = log --graph --show-signature --pretty=short --max-count=10
+logd = log --pretty=format:'- %s (%h)' --reverse develop..HEAD
+logdpr = log --pretty=format:'- %s (%h)%n  %b' --reverse develop..HEAD --grep 'pull request'
+logm = log --pretty=format:'- %s (%h)' --reverse main..HEAD
+logmpr = log --pretty=format:'- %s (%h)%n  %b' --reverse main..HEAD --grep 'pull request'
+lure = pull --rebase
+p = push
+pt = push --tags
+pso = push --set-upstream origin
+ra = remote add
+rei = rebase -i
+reia = rebase -i --autosquash
+rv = remote -v
+sdiff = !git diff && git submodule foreach 'git diff'
+spush = push --recurse-submodules=on-demand
+st = status
+stal = stash pop
+stap = stash push
+supdate = submodule update --remote --merge
+tag = tag -a -s
+[commit]
+gpgsign = true
+template = ~/.gitmessage
+[credential]
+helper = osxkeychain
+[filter "lfs"]
+clean = git-lfs clean -- %f
+smudge = git-lfs smudge -- %f
+process = git-lfs filter-process
+required = true
+[github]
+user = br3ndonland
+[gpg]
+program = gpg
+[pull]
+ff = only
+[push]
+default = simple
+[sendemail]
+confirm = auto
+from = "Brendon Smith <gitsmith@protonmail.com>"
+smtpServer = 127.0.0.1
+smtpServerPort = 1025
+smtpUser = gitsmith@protonmail.com
+suppresscc = author
+[tag]
+gpgsign = true
+[user]
+name = Brendon Smith
+email = br3ndonland@protonmail.com
+signingkey = F09A320454D3711156BD308FAC66384CFA8C69B0
