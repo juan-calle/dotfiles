@@ -10,7 +10,7 @@ brew "bash"
 brew "deno" # macOS-only - Secure runtime for JavaScript and TypeScript
 brew "gh" # GitHub command-line tool
 brew "git"# Distributed revision control system
-brew "gnupg"
+# brew "gnupg"
 brew "gnu-sed"
 brew "grep"
 brew "curl" # Get a file from an HTTP, HTTPS or FTP server
@@ -82,6 +82,6 @@ cask "keybase" # Compatibility through Rosetta2 🌹
 
 
 ### mac app store
-mas "keynote", id: 409183694
-mas "numbers", id: 409203825
-mas "pages", id: 409201541
+mas install 409183694 # "keynote"
+mas install 409203825 # "numbers"
+mas install 40920154 # "pages"
