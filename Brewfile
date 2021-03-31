@@ -82,6 +82,6 @@ cask "keybase" # Compatibility through Rosetta2 🌹
 
 
 ### mac app store
-mas install 409183694 # "keynote"
-mas install 409203825 # "numbers"
-mas install 40920154 # "pages"
+# mas install 409183694 # "keynote"
+# mas install 409203825 # "numbers"
+# mas install 40920154 # "pages"
