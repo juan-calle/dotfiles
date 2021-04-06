@@ -14,7 +14,7 @@ brew "git"# Distributed revision control system
 brew "gnu-sed"
 brew "grep"
 brew "curl" # Get a file from an HTTP, HTTPS or FTP server
-brew "mas" # macOS-only
+# brew "mas" # macOS-only
 brew 'nginx'# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "pinentry" # Passphrase entry dialog utilizing the Assuan protocol
 brew "pipx" # Execute binaries from Python packages in isolated environments
@@ -71,7 +71,7 @@ cask "spotify" # Compatibility through Rosetta2 🌹
 cask "transmission" # Compatibility through Rosetta2 🌹
 cask "whatsapp" # Compatibility through Rosetta2 🌹
 cask "zoom" # Compatibility through Rosetta2 🌹
-cask "keybase" # Compatibility through Rosetta2 🌹
+# cask "keybase" # Compatibility through Rosetta2 🌹
 
 # Alfred fully supported ✅
 # Dash fully supported from version 6 ✅
