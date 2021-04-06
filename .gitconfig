@@ -1,0 +1,10 @@
+[core]
+	excludesfile = /Users/jc/.gitignore
+	editor = emacs
+	autocrlf = false
+[user]
+	name = Juan Calle
+	email = juancmcalle@gmail.com
+	username = juan-calle
+[init]
+	defaultBranch = master
