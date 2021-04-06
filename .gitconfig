@@ -8,3 +8,9 @@
 	username = juan-calle
 [init]
 	defaultBranch = master
+[github]
+	user = juan-calle
+[push]
+	default = simple
+[credential]
+	helper = osxkeychain
