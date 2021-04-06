@@ -10,3 +10,4 @@ typescript
 webtorrent-cli
 mocha
 chai
+commitizen
