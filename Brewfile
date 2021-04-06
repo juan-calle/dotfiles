@@ -16,7 +16,7 @@ brew "grep"
 brew "curl" # Get a file from an HTTP, HTTPS or FTP server
 # brew "mas" # macOS-only
 brew 'nginx'# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
-brew "pinentry" # Passphrase entry dialog utilizing the Assuan protocol
+# brew "pinentry" # Passphrase entry dialog utilizing the Assuan protocol
 brew "pipx" # Execute binaries from Python packages in isolated environments
 brew "python" # Pretty-print tabular data in Python
 brew "aria2" # Download with resuming and segmented downloading
