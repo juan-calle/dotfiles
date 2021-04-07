@@ -89,6 +89,13 @@ ruby xccode-downloader.rb
 If everything goes well you will have a .xip file in your ~/Downloads 
 Copy the file to a usb drive to install it in the new machine
 
+Clean-up a bit
+
+```sh
+cd ~
+rm xccode-downloader.rb
+```
+
 ### Check Security & Privacy
 
 To improve your security and privacy standards check out [this repository](https://github.com/drduh/macOS-Security-and-Privacy-Guide)
