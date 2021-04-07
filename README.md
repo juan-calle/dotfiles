@@ -13,6 +13,7 @@ Juan Calle ([br3ndonland](https://github.com/juan-calle))
 - [Before Bootstrapping](#before-bootstrapping)
   - [Install Xcode, Xcode CLI & Rosetta2](#xcode)
   - [Install Oh My ZSH](#oh-my-zsh)
+  - [Clone dotfiles repository](#clone)
   - [Install Powerlevel 10k](#powerlevel-10k)
   - [Download Cobalt2 color scheme](#cobalt2-download)
   - [Install NVM as an Oh My ZSH plugin](#nvm)
@@ -192,6 +193,12 @@ Once that completes, install oh-my-zsh.
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 ```
 
+### Clone dotfiles repository
+
+```sh
+git clone https://github.com/juan-calle/dotfiles.git ~/.dotfiles/
+```
+
 ### Install Powerlevel 10k
 
 Execute ths command and follow installation instructions
@@ -279,8 +286,12 @@ export STRAP_GIT_USER=juan-calle
 Then run the following command
 
 ```sh
-/usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/juan-calle/dotfiles/main/bootstrap.sh)"
+/usr/bin/env bash -c ~/.dotfiles/bootstrap.sh
 ```
+
+<!-- ```sh
+/usr/bin/env bash -c "$(curl -fsSL https://raw.githubusercontent.com/juan-calle/dotfiles/main/bootstrap.sh)"
+``` -->
 
 **[bootstrap.sh script](./bootstrap.sh)** will set up macOS and Homebrew, run scripts in the _script/_ directory, and install Homebrew packages
 and casks from the **[Brewfile](./Brewfile)**.
