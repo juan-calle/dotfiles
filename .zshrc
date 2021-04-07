@@ -10,6 +10,9 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/jc/.oh-my-zsh"
+export STRAP_GIT_EMAIL="juancmcalle@gmail.com"
+export STRAP_GIT_NAME="Juan Calle"
+export STRAP_GIT_USER="juan-calle"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
