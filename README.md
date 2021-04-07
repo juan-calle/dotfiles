@@ -43,7 +43,7 @@ sudo curl -s https://raw.githubusercontent.com/grahampugh/macadmin-scripts/maste
 
 ### Creating Bootable Drive
 
-Connect the USB flash drive or other volume that you're using for the bootable installer. 
+Connect the USB flash drive or other volume that you're using for the bootable installer.
 
 Type or paste one of the following commands in Terminal. These assume that the installer is in your **Applications** folder, and **MyVolume** is the name of the USB flash drive or other volume you're using. If it has a different name, replace MyVolume in these commands with the name of your volume.
 
@@ -76,7 +76,7 @@ Find the version of Xcode to download and start the download.
 Open Develepor tools and go to the 'Application' tab
 Find the ADCDownloadAuth cookie and copy its value
 
-Download the script and run it. 
+Download the script and run it.
 
 Follow the instructions and when prompted, paste the value of the ADCDownloadAuth cookie
 
@@ -86,7 +86,7 @@ curl -LJO https://gist.githubusercontent.com/iandundas/fabe07455e5216442a4219223
 ruby xccode-downloader.rb
 ```
 
-If everything goes well you will have a .xip file in your ~/Downloads 
+If everything goes well you will have a .xip file in your ~/Downloads
 Copy the file to a usb drive to install it in the new machine
 
 Clean-up a bit
@@ -136,7 +136,7 @@ For further info, follow [this article](https://www.imore.com/how-do-clean-insta
 
 6. Release the Option key when you see a dark screen showing your bootable volumes.
 
-7. Select the volume containing the bootable installer. Then click the up arrow or press Return. 
+7. Select the volume containing the bootable installer. Then click the up arrow or press Return.
 
 8. If you can't start up from the bootable installer, make sure that the External Boot setting in Startup Security Utility is set to allow booting from external media. Choose your language, if prompted.
 
@@ -148,18 +148,19 @@ Before running the [bootstrap.sh script](bootstrap.sh) we have to manually confi
 
 ### Install Xcode, Xcode CLI & Rosetta2
 
-Insert the usb containing the Xcode_12.4.xip file and copy it to your home folder.
+Insert the usb containing the Xcode_12.4.xip file and copy the .xip file to the Desktop.
 
-Install Xcode Comman Line Tools:
+Install Xcode Command Line Tools:
 
 ```sh
 xcode-select --install
 ```
 
-Then extract it inside the Applications folder
+Move Xcode_12.4.xip to Applications folder and extract it
 
 ```sh
-xip -x /Applications/Xcode_12.4.xip
+sudo mv Xcode_12.4.xip /Applications/Xcode_12.4.xip
+sudo xip -x /Applications/Xcode_12.4.xip
 ```
 
 Then, set the command-line tools directory to point to Xcode
@@ -168,10 +169,16 @@ Then, set the command-line tools directory to point to Xcode
 sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
 ```
 
-And agree to the Xcode license 
+And agree to the Xcode license
 
 ```sh
 sudo xcodebuild -license
+```
+
+Then, delete the .xip file
+
+```sh
+sudo rm /Applications/Xcode_12.4.xip
 ```
 
 Finally, open Xcode at least once and install the required components and also **Rosetta2**
@@ -179,7 +186,7 @@ Finally, open Xcode at least once and install the required components and also *
 
 ### Install Oh My ZSH
 
-Once that completes, install oh-my-zsh. 
+Once that completes, install oh-my-zsh.
 
 ```sh
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
@@ -187,7 +194,7 @@ sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/too
 
 ### Install Powerlevel 10k
 
-Execute ths command and follow installation instructions 
+Execute ths command and follow installation instructions
 
 ```sh
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
@@ -210,7 +217,7 @@ Clone zsh-nvm into the custom plugins folder
 git clone https://github.com/lukechilds/zsh-nvm ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-nvm
 ```
 
-Then load as a plugin in .zshrc 
+Then load as a plugin in .zshrc
 Keep in mind that plugins need to be added before oh-my-zsh.sh is sourced.
 
 ### Install Node
@@ -257,9 +264,9 @@ nvm use whatever_version
 
 ## Bootstrapping
 
-We're now ready to run  **[bootstrap.sh script](./bootstrap.sh)**, which is a shell script to automate setup of a new macOS development machine. 
+We're now ready to run  **[bootstrap.sh script](./bootstrap.sh)**, which is a shell script to automate setup of a new macOS development machine.
 
-The script is **idempotent**, meaning it can be run repeatedly on the same system. 
+The script is **idempotent**, meaning it can be run repeatedly on the same system.
 
 To set up a macOS development machine, simply open a terminal, set the environment variables `STRAP_GIT_EMAIL`, `STRAP_GIT_NAME`, and `STRAP_GIT_USER` (GitHub username)
 
@@ -280,9 +287,9 @@ and casks from the **[Brewfile](./Brewfile)**.
 
 ## Create a Rosetta2 Terminal
 
-1. Duplicate iTerm. 
+1. Duplicate iTerm.
 2. Rename the duplicate with **iTerm-Rosetta.app**
-3. **Right click** on the newly created **iTerm-rosetta** > `Get info` > and check the option `Open using Rosetta` 
+3. **Right click** on the newly created **iTerm-rosetta** > `Get info` > and check the option `Open using Rosetta`
 
 ## Apply Color Scheme to iTerm
 
