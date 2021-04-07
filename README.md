@@ -315,6 +315,15 @@ cd ~
 rm cobalt2.itermcolors
 ```
 
+
+## Add Homebrew to your PATH in /Users/jc/.zprofile:
+    ```sh
+    echo 'eval $(/opt/homebrew/bin/brew shellenv)' >> /Users/jc/.zprofile
+    eval $(/opt/homebrew/bin/brew shellenv)
+    ```
+Run `brew help` to get started
+
+
 ## MackUp
 
 Once the mac settings are applied push/pull to a repo in github
