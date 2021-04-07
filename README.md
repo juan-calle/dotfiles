@@ -1,5 +1,5 @@
 # Dotfiles
-Juan Calle ([br3ndonland](https://github.com/juan-calle))
+Juan Calle ([juan-calle](https://github.com/juan-calle))
 
 ## Table of Contents <!-- omit in toc -->
 - [Before Re-Installing macOSX](#before-beginning)
