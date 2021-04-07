@@ -21,6 +21,7 @@ Juan Calle ([juan-calle](https://github.com/juan-calle))
 - [Bootstrapping](#bootstrapping)
 - [Create a Rosetta2 Terminal](#rosetta-terminal)
 - [Apply Color Scheme to iTerm](#iterm-color)
+- [Add Homebrew to your PATH](#hombrew-path)
 - [MackUp](#mackup)
 
 
