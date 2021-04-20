@@ -1,9 +1,9 @@
 [core]
 	excludesfile = /Users/jc/.gitignore
-	editor = emacs
+	editor = code
 	autocrlf = false
 [user]
-	name = Juan Calle
+	name = juan-calle
 	email = juancmcalle@gmail.com
 	username = juan-calle
 [init]
