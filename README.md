@@ -52,13 +52,13 @@ Type or paste one of the following commands in Terminal. These assume that the i
 Big Sur:
 
 ```sh
-sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+sudo /Applications/Install\ macOS\ Big\ Sur.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolumeBS
 ```
 
 Mojave:
 
 ```sh
-sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolume
+sudo /Applications/Install\ macOS\ Mojave.app/Contents/Resources/createinstallmedia --volume /Volumes/MyVolumeM
 ```
 
 ### Downloading Xcode
