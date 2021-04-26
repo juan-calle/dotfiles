@@ -107,8 +107,25 @@ source $ZSH/oh-my-zsh.sh
 # For a full list of active aliases, run `alias`.
 #
 # Example aliases
-# alias zshconfig="mate ~/.zshrc"
+alias zr="source ~/.zshrc"
+alias ez="code ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias gaa="git add ."
+alias gs="git status"
+alias gcz="git cz"
+alias gp="git push origin master"
+
+alias g="gulp"
+alias gl="gulp lint"
+
+alias n="node ."
+alias t="npm test"
+
+alias op="code -a ."
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
