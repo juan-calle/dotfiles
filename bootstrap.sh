@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 ### ------------ bootstrap.sh - set up development environment ------------ ###
-# https://github.com/MikeMcQuaid/strap, https://github.com/Homebrew/install
 
 set -e
 

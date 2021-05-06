@@ -42,6 +42,7 @@ brew "media-info" # Unified display of technical and tag data for audio/video
 brew "mp4v2" # Read, create, and modify MP4 files
 
 # Casks for work and personal use
+cask "amphetamine"
 cask "visual-studio-code" # Fully naative from 1.54 ✅
 cask "vlc" # Fully naative from 1.54 ✅
 cask "bettertouchtool" # Zoom BTT fully supported from version 3.502 ✅
