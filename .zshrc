@@ -83,9 +83,15 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
   git
   zsh-nvm
+  command-not-found
   zsh-autosuggestions
   zsh-syntax-highlighting
-  )
+  gulp
+  httpie
+  npm
+  osx
+  zsh-interactive-cd
+  z)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -134,3 +140,5 @@ alias op="code -a ."
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
