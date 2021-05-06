@@ -275,12 +275,12 @@ We're now ready to run  **[bootstrap.sh script](./bootstrap.sh)**, which is a sh
 
 The script is **idempotent**, meaning it can be run repeatedly on the same system.
 
-To set up a macOS development machine, simply open a terminal, set the environment variables `STRAP_GIT_EMAIL`, `STRAP_GIT_NAME`, and `STRAP_GIT_USER` (GitHub username)
+To set up a macOS development machine, simply open a terminal, set the variables `STRAP_GIT_EMAIL`, `STRAP_GIT_NAME`, and `STRAP_GIT_USER` (GitHub username)
 
 ```sh
-export STRAP_GIT_EMAIL=juancmcalle@gmail.com
-export STRAP_GIT_NAME="Juan Calle"
-export STRAP_GIT_USER=juan-calle
+export STRAP_GIT_EMAIL=${my_email}
+export STRAP_GIT_NAME="${my_name}"
+export STRAP_GIT_USER=${my_userName}
 ```
 
 Then run the following command
