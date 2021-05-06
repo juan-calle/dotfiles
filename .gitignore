@@ -21,6 +21,7 @@ Thumbs.db
 venv
 node_modules
 .sass-cache
+secret.key
 
 # Media
 *.mp4

@@ -7,7 +7,7 @@
 	email = juancmcalle@gmail.com
 	username = juan-calle
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [github]
 	user = juan-calle
 [push]
