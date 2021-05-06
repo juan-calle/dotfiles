@@ -9,7 +9,7 @@ fi
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/jc/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 export STRAP_GIT_EMAIL="juancmcalle@gmail.com"
 export STRAP_GIT_NAME="Juan Calle"
 export STRAP_GIT_USER="juan-calle"
@@ -80,7 +80,12 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git zsh-nvm)
+plugins=(
+  git
+  zsh-nvm
+  zsh-autosuggestions
+  zsh-syntax-highlighting
+  )
 
 source $ZSH/oh-my-zsh.sh
 
