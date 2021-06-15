@@ -86,6 +86,7 @@ plugins=(
   command-not-found
   zsh-autosuggestions
   zsh-syntax-highlighting
+  zsh-better-npm-completion
   gulp
   httpie
   npm

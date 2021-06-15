@@ -1,6 +1,6 @@
 [core]
 	excludesfile = /Users/jc/.gitignore
-	editor = code
+	editor = code -w
 	autocrlf = false
 [user]
 	name = juan-calle
