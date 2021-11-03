@@ -1,5 +1,5 @@
 [core]
-	excludesfile = /Users/jc/.gitignore
+	excludesfile = /Users/jc/.gitignore_global
 	editor = code -w
 	autocrlf = false
 [user]
@@ -7,7 +7,7 @@
 	email = juancmcalle@gmail.com
 	username = juan-calle
 [init]
-	defaultBranch = master
+	defaultBranch = main
 [github]
 	user = juan-calle
 [push]
@@ -19,3 +19,21 @@
 	required = true
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
+[alias]
+	co = checkout
+  ec = config --global -e
+  up = !git pull --rebase --prune $@ && git submodule update --init --recursive
+  cob = checkout -b
+  cm = !git add -A && git commit -m
+  save = !git add -A && git commit -m 'SAVEPOINT'
+  wip = !git add -u && git commit -m "WIP"
+  undo = reset HEAD~1 --mixed
+  amend = commit -a --amend
+  wipe = !git add -A && git commit -qm 'WIPE SAVEPOINT' && git reset HEAD~1 --hard
+  default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
+  bdone = "!f() { DEFAULT=$(git default); git checkout ${1-$DEFAULT} && git up && git bclean ${1-$DEFAULT}; }; f"
+  bclean = "!f() { DEFAULT=$(git default); git branch --merged ${1-$DEFAULT} | grep -v " ${1-$DEFAULT}$" | xargs git branch -d; }; f"
+	cdef = "!git checkout $(git originhead)"
+	originhead = "!git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5"
+	la = "!git config -l | grep alias | cut -c 7-"
+	lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
