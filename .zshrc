@@ -125,7 +125,7 @@ alias ez="code ~/.zshrc"
 alias gaa="git add ."
 alias gs="git status"
 alias gcz="git cz"
-alias gp="git push origin master"
+alias gp="git push origin main"
 
 alias g="gulp"
 alias gl="gulp lint"
