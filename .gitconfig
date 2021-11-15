@@ -20,7 +20,7 @@
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 [alias]
-	co = checkout
+  co = checkout
   ec = config --global -e
   up = !git pull --rebase --prune $@ && git submodule update --init --recursive
   cob = checkout -b
@@ -33,7 +33,11 @@
   default = !git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'
   bdone = "!f() { DEFAULT=$(git default); git checkout ${1-$DEFAULT} && git up && git bclean ${1-$DEFAULT}; }; f"
   bclean = "!f() { DEFAULT=$(git default); git branch --merged ${1-$DEFAULT} | grep -v " ${1-$DEFAULT}$" | xargs git branch -d; }; f"
-	cdef = "!git checkout $(git originhead)"
-	originhead = "!git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5"
-	la = "!git config -l | grep alias | cut -c 7-"
-	lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
+  cdef = "!git checkout $(git originhead)"
+  originhead = "!git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5"
+  la = "!git config -l | grep alias | cut -c 7-"
+  lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
+  ghnew = !git init && gh repo create
+  mirror = !gh repo create
+  syncmain = !git branch --set-upstream-to=origin/main main
+  fixsymbolicrefs = !git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
