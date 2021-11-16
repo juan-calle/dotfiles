@@ -20,7 +20,7 @@ Thumbs.db
 # Application specific files
 venv
 .env
-node_modules/
+node_modules
 .sass-cache
 secret.key
 

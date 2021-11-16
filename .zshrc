@@ -90,7 +90,7 @@ plugins=(
   gulp
   httpie
   npm
-  osx
+  macos
   zsh-interactive-cd
   z)
 
