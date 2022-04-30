@@ -1,27 +1,28 @@
 [core]
-	excludesfile = /Users/jc/.gitignore_global
-	editor = code -w
-	autocrlf = false
+  excludesfile = /Users/jc/.gitignore_global
+  editor = code -w
+  autocrlf = false
 [user]
-	name = juan-calle
+	name = Juan Calle
 	email = juancmcalle@gmail.com
-	username = juan-calle
+  username = juan-calle
+  signingKey = null
 [init]
-	defaultBranch = main
+  defaultBranch = main
 [github]
-	user = juan-calle
+  user = juan-calle
 [push]
-	default = simple
+  default = simple
 [credential]
-	helper = osxkeychain
+  helper = osxkeychain
 [filter "lfs"]
-	process = git-lfs filter-process
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
 [alias]
   co = checkout
-  ec = config --global -e
+  conf = config --global -e
   up = !git pull --rebase --prune $@ && git submodule update --init --recursive
   cob = checkout -b
   cm = !git add -A && git commit -m
@@ -37,7 +38,21 @@
   originhead = "!git remote show origin | grep 'HEAD branch' | cut -d ' ' -f5"
   la = "!git config -l | grep alias | cut -c 7-"
   lg = !git log --pretty=format:\"%C(magenta)%h%Creset -%C(red)%d%Creset %s %C(dim green)(%cr) [%an]\" --abbrev-commit -30
-  ghnew = !git init && gh repo create
-  mirror = !gh repo create
-  syncmain = !git branch --set-upstream-to=origin/main main
   fixsymbolicrefs = !git symbolic-ref refs/remotes/origin/HEAD refs/remotes/origin/main
+  forcelease = !git push --force-with-lease
+  rename = "!moveit() { git push origin --delete `git branch --show-current` || true; git branch -m $1; git push --set-upstream origin $1; }; moveit"
+  remotedelete = "push --delete origin"
+  # reporoot = !basename `git rev-parse --show-toplevel`
+  # create = "!f() { DEFAULT=$(!basename `git rev-parse --show-toplevel`); git init && gh repo create $1 --private && git remote add origin https://github.com/juan-calle/${1-$DEFAULT}.git && git branch -M main; }; f"
+  # pushup = !git push -u origin main
+  # mirror = "!f() { DEFAULT=$(!basename `git rev-parse --show-toplevel`); gh repo create ${1-$DEFAULT} --private && git remote remove origin && git remote add origin https://github.com/juan-calle/${1-$DEFAULT}.git && git branch -M main && git pushup; }; f"
+  # ps = !git push origin HEAD
+  # nrepo = !git create $1 && git addremote
+  # syncmain = !git branch --set-upstream-to=origin/main main
+  # delete = !git remote remove origin && gh repo delete juan-calle/$(git root)
+[gpg]
+  program = null
+[commit]
+  gpgSign = false
+[tag]
+  forceSignAnnotated = false

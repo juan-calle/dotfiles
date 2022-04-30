@@ -1,3 +1,5 @@
+# Fig pre block. Keep at the top of this file.
+. "$HOME/.fig/shell/zshrc.pre.zsh"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -6,13 +8,14 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-export ZSH="$HOME/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh/"
 export STRAP_GIT_EMAIL="juancmcalle@gmail.com"
 export STRAP_GIT_NAME="Juan Calle"
 export STRAP_GIT_USER="juan-calle"
+export JIRA_API_TOKEN="PH279ycE1hM7bDIwqRXn063A"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -33,14 +36,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
 # DISABLE_MAGIC_FUNCTIONS="true"
@@ -52,12 +54,13 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-# ENABLE_CORRECTION="true"
+ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
-# Caution: this setting can cause issues with multiline prompts (zsh 5.7.1 and newer seem to work)
-# See https://github.com/ohmyzsh/ohmyzsh/issues/5765
-# COMPLETION_WAITING_DOTS="true"
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
+COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
 # under VCS as dirty. This makes repository status check for large repositories
@@ -81,22 +84,51 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  git
-  zsh-nvm
-  command-not-found
-  zsh-autosuggestions
-  zsh-syntax-highlighting
-  zsh-better-npm-completion
-  gulp
-  httpie
-  npm
-  macos
-  zsh-interactive-cd
-  z)
+    fig
+    fzf
+    git
+    npm
+    node
+    direnv
+    heroku
+    macos
+    zsh-nvm
+    thefuck
+    command-not-found
+    zsh-interactive-cd
+    zsh-navigation-tools
+    zsh-syntax-highlighting
+    zsh-better-npm-completion
+    httpie
+    z
+    zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
+# source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
+# Autoload node vrersions in prokects containing .nvmrc
+autoload -U add-zsh-hook
+load-nvmrc() {
+  local node_version="$(nvm version)"
+  local nvmrc_path="$(nvm_find_nvmrc)"
+
+  if [ -n "$nvmrc_path" ]; then
+    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+    if [ "$nvmrc_node_version" = "N/A" ]; then
+      nvm install
+    elif [ "$nvmrc_node_version" != "$node_version" ]; then
+      nvm use
+    fi
+  elif [ "$node_version" != "$(nvm version default)" ]; then
+    echo "Reverting to nvm default version"
+    nvm use default
+  fi
+}
+add-zsh-hook chpwd load-nvmrc
+load-nvmrc
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -118,28 +150,37 @@ source $ZSH/oh-my-zsh.sh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
 #
-# Example aliases
+# Refresh .zshrc
 alias zr="source ~/.zshrc"
+# Edit .zshrc
 alias ez="code ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
+
+# Install and dropbox-ignore node modules
+alias npmi="npm install && di"
+# Install and dropbox-ignore node modules
+alias npmii="npm install && find ~/Dropbox  -type d | grep 'node_modules$' | grep -v '/node_modules/' | xargs -I {} -t -L 1 xattr -w com.dropbox.ignored 1 "{}""
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias ....="cd ../../.."
+mkd() {
+  mkdir -p "$@" && cd "$@"
+}
+
+# Git
 alias gaa="git add ."
 alias gs="git status"
-alias gcz="git cz"
-alias gp="git push origin main"
 
-alias g="gulp"
-alias gl="gulp lint"
-
-alias n="node ."
-alias t="npm test"
-
+# Open current folder in VSCode
 alias op="code -a ."
+
+# Example aliases
+alias zr="source ~/.zshrc"
+# alias ohmyzsh="mate ~/.oh-my-zsh"
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
-export PATH="$PATH:$HOME/.rvm/bin"
-export PATH="/opt/homebrew/opt/ruby/bin:$PATH"
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+# Fig post block. Keep at the bottom of this file.
+. "$HOME/.fig/shell/zshrc.post.zsh"
