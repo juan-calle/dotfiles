@@ -149,11 +149,13 @@ load-nvmrc
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
 # For a full list of active aliases, run `alias`.
-#
+
 # Refresh .zshrc
 alias zr="source ~/.zshrc"
 # Edit .zshrc
 alias ez="code ~/.zshrc"
+# Clear console
+alias §="clear"
 
 # Install and dropbox-ignore node modules
 alias npmi="npm install && di"
