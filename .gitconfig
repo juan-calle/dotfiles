@@ -4,9 +4,9 @@
   autocrlf = false
 [user]
 	name = Juan Calle
-	email = juancmcalle@gmail.com
+	email = 8818957+juan-calle@users.noreply.github.com
   username = juan-calle
-  signingKey = null
+	signingkey = D3C8FEB68B6351F4
 [init]
   defaultBranch = main
 [github]
@@ -51,8 +51,8 @@
   # syncmain = !git branch --set-upstream-to=origin/main main
   # delete = !git remote remove origin && gh repo delete juan-calle/$(git root)
 [gpg]
-  program = null
+	program = gpg
 [commit]
-  gpgSign = false
+	gpgsign = true
 [tag]
   forceSignAnnotated = false

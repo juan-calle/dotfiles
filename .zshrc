@@ -12,10 +12,13 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh/"
+export REDO_HISTORY_PATH="$HOME/.zsh_history"
+export REDO_EDITOR="code"
 export STRAP_GIT_EMAIL="juancmcalle@gmail.com"
 export STRAP_GIT_NAME="Juan Calle"
 export STRAP_GIT_USER="juan-calle"
 export JIRA_API_TOKEN="PH279ycE1hM7bDIwqRXn063A"
+bindkey -s '^e' 'redo^M'
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -105,6 +108,7 @@ plugins=(
 )
 
 source $ZSH/oh-my-zsh.sh
+source "$(redo alias-file)"
 # source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
@@ -186,3 +190,4 @@ alias zr="source ~/.zshrc"
 
 # Fig post block. Keep at the bottom of this file.
 . "$HOME/.fig/shell/zshrc.post.zsh"
+export GPG_TTY=$(tty)
