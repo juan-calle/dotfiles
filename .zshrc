@@ -1,5 +1,5 @@
 # Fig pre block. Keep at the top of this file.
-. "$HOME/.fig/shell/zshrc.pre.zsh"
+[[ -f "$HOME/.fig/shell/zshrc.pre.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.pre.zsh"
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -103,8 +103,7 @@ plugins=(
     zsh-syntax-highlighting
     zsh-better-npm-completion
     httpie
-    z
-    zsh-autosuggestions
+    # zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -112,27 +111,14 @@ source $ZSH/oh-my-zsh.sh
 # source $ZSH/custom/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # User configuration
-# Autoload node vrersions in prokects containing .nvmrc
+# Autoload node vrersions in proyects containing .nvmrc
 autoload -U add-zsh-hook
-load-nvmrc() {
-  local node_version="$(nvm version)"
-  local nvmrc_path="$(nvm_find_nvmrc)"
+autoload -Uz load-nvmrc
 
-  if [ -n "$nvmrc_path" ]; then
-    local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
-
-    if [ "$nvmrc_node_version" = "N/A" ]; then
-      nvm install
-    elif [ "$nvmrc_node_version" != "$node_version" ]; then
-      nvm use
-    fi
-  elif [ "$node_version" != "$(nvm version default)" ]; then
-    echo "Reverting to nvm default version"
-    nvm use default
-  fi
-}
 add-zsh-hook chpwd load-nvmrc
 load-nvmrc
+
+
 
 # export MANPATH="/usr/local/man:$MANPATH"
 
@@ -162,9 +148,7 @@ alias ez="code ~/.zshrc"
 alias §="clear"
 
 # Install and dropbox-ignore node modules
-alias npmi="npm install && di"
-# Install and dropbox-ignore node modules
-alias npmii="npm install && find ~/Dropbox  -type d | grep 'node_modules$' | grep -v '/node_modules/' | xargs -I {} -t -L 1 xattr -w com.dropbox.ignored 1 "{}""
+alias npmi="npm install && find ~/Dropbox  -type d | grep 'node_modules$' | grep -v '/node_modules/' | xargs -I {} -t -L 1 xattr -w com.dropbox.ignored 1 "{}""
 
 # Navigation
 alias ..="cd .."
@@ -188,6 +172,11 @@ alias zr="source ~/.zshrc"
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
-# Fig post block. Keep at the bottom of this file.
-. "$HOME/.fig/shell/zshrc.post.zsh"
 export GPG_TTY=$(tty)
+
+export PATH="$PATH:/Users/Juan/.kit/bin"
+
+typeset -U PATH
+
+# Fig post block. Keep at the bottom of this file.
+[[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
