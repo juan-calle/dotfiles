@@ -42,6 +42,9 @@
   forcelease = !git push --force-with-lease
   rename = "!moveit() { git push origin --delete `git branch --show-current` || true; git branch -m $1; git push --set-upstream origin $1; }; moveit"
   remotedelete = "push --delete origin"
+  fixup-squash = "!EDITOR=true git rebase --autosquash -i $1 #"
+  fixup = "!EDITOR=true git add . && git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -I {} sh -c 'git commit --fixup "$1" && git rebase -i --autosquash "$1^" #' sh {}"
+
   # reporoot = !basename `git rev-parse --show-toplevel`
   # create = "!f() { DEFAULT=$(!basename `git rev-parse --show-toplevel`); git init && gh repo create $1 --private && git remote add origin https://github.com/juan-calle/${1-$DEFAULT}.git && git branch -M main; }; f"
   # pushup = !git push -u origin main
