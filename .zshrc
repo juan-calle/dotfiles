@@ -17,7 +17,7 @@ export REDO_EDITOR="code"
 export STRAP_GIT_EMAIL="juancmcalle@gmail.com"
 export STRAP_GIT_NAME="Juan Calle"
 export STRAP_GIT_USER="juan-calle"
-export JIRA_API_TOKEN="PH279ycE1hM7bDIwqRXn063A"
+JIRA_API_TOKEN=$JIRA_API_TOKEN
 # bindkey -s '^e' 'redo^M'
 
 # Set name of the theme to load --- if set to "random", it will
@@ -161,7 +161,7 @@ mkd() {
 # Git
 alias gaa="git add ."
 alias gs="git status"
-
+alias cm="fig run @juan-calle/conventional-commit"
 # Open current folder in VSCode
 alias op="code -a ."
 
@@ -177,6 +177,10 @@ export GPG_TTY=$(tty)
 export PATH="$PATH:/Users/Juan/.kit/bin"
 
 typeset -U PATH
+
+export PATH=$PATH:/Users/Juan/.spicetify
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

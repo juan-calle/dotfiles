@@ -27,3 +27,4 @@ secret.key
 # Media
 *.mp4
 .iterm2
+**/vite.config.ts
