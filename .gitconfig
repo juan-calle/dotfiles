@@ -6,7 +6,7 @@
 	name = Juan Calle
 	email = 8818957+juan-calle@users.noreply.github.com
   username = juan-calle
-	signingkey = D3C8FEB68B6351F4
+	signingkey = B8EC03B00F5F50FE
 [init]
   defaultBranch = main
 [github]
@@ -46,10 +46,11 @@
   fixup = "!EDITOR=true git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -I {} sh -c 'git commit --fixup "$1" && git rebase -i --autosquash "$1^" #' sh {}"
 [gpg]
 	program = gpg
+	format = openpgp
 [commit]
 	gpgsign = true
 [tag]
-  forceSignAnnotated = false
+	forceSignAnnotated = true
 [difftool "Kaleidoscope"]
 	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
 [mergetool "Kaleidoscope"]
@@ -64,3 +65,5 @@
 	tool = Kaleidoscope
 [mergetool]
 	prompt = true
+[rebase]
+	updateRefs = true

@@ -162,98 +162,98 @@ run_dotfile_scripts() {
 
 [ "$USER" = "root" ] && abort "Run bootstrap.sh as yourself, not root."
 
-if [ "$MACOS" -gt 0 ]; then
-  [ -z "$STRAP_CI" ] && caffeinate -s -w $$ &
-  groups | grep $Q -E "\b(admin)\b" || abort "Add $USER to admin."
-  logn "Configuring security settings:"
-  SAFARI="com.apple.Safari"
-  defaults write $SAFARI $SAFARI.ContentPageGroupIdentifier.WebKit2JavaEnabled \
-    -bool false
-  defaults write $SAFARI \
-    $SAFARI.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles \
-    -bool false
-  defaults write com.apple.screensaver askForPassword -int 1
-  defaults write com.apple.screensaver askForPasswordDelay -int 0
-  sudo_askpass defaults write \
-    /Library/Preferences/com.apple.alf globalstate -int 1
-  sudo_askpass launchctl load \
-    /System/Library/LaunchDaemons/com.apple.alf.agent.plist 2>/dev/null
-  if [ -n "$STRAP_GIT_NAME" ] && [ -n "$STRAP_GIT_EMAIL" ]; then
-    FOUND="Found this computer? Please contact"
-    LOGIN_TEXT=$(escape "$FOUND $STRAP_GIT_NAME at $STRAP_GIT_EMAIL.")
-    echo "$LOGIN_TEXT" | grep -q '[()]' && LOGIN_TEXT="'$LOGIN_TEXT'"
-    sudo_askpass defaults write \
-      /Library/Preferences/com.apple.loginwindow LoginwindowText "$LOGIN_TEXT"
-    logk
-  fi
-fi
+#if [ "$MACOS" -gt 0 ]; then
+# [ -z "$STRAP_CI" ] && caffeinate -s -w $$ &
+# groups | grep $Q -E "\b(admin)\b" || abort "Add $USER to admin."
+# logn "Configuring security settings:"
+# SAFARI="com.apple.Safari"
+# defaults write $SAFARI $SAFARI.ContentPageGroupIdentifier.WebKit2JavaEnabled \
+#   -bool false
+# defaults write $SAFARI \
+#   $SAFARI.ContentPageGroupIdentifier.WebKit2JavaEnabledForLocalFiles \
+#   -bool false
+# defaults write com.apple.screensaver askForPassword -int 1
+# defaults write com.apple.screensaver askForPasswordDelay -int 0
+# sudo_askpass defaults write \
+#   /Library/Preferences/com.apple.alf globalstate -int 1
+# sudo_askpass launchctl load \
+#   /System/Library/LaunchDaemons/com.apple.alf.agent.plist 2>/dev/null
+# if [ -n "$STRAP_GIT_NAME" ] && [ -n "$STRAP_GIT_EMAIL" ]; then
+#   FOUND="Found this computer? Please contact"
+#   LOGIN_TEXT=$(escape "$FOUND $STRAP_GIT_NAME at $STRAP_GIT_EMAIL.")
+#   echo "$LOGIN_TEXT" | grep -q '[()]' && LOGIN_TEXT="'$LOGIN_TEXT'"
+#   sudo_askpass defaults write \
+#     /Library/Preferences/com.apple.loginwindow LoginwindowText "$LOGIN_TEXT"
+#   logk
+# fi
+#fi
 
 # Check and enable full-disk encryption.
-logn "Checking full-disk encryption status:"
-VAULT_MSG="FileVault is (On|Off, but will be enabled after the next restart)."
-if fdesetup status | grep $Q -E "$VAULT_MSG"; then
-  logk
-elif [ ! $MACOS ] || [ -n "$STRAP_CI" ]; then
-  echo
-  logn "Skipping full-disk encryption."
-elif [ -n "$STRAP_INTERACTIVE" ]; then
-  echo
-  log "Enabling full-disk encryption on next reboot:"
-  sudo_askpass fdesetup enable -user "$USER" |
-    tee ~/Desktop/"FileVault Recovery Key.txt"
-  logk
-else
-  echo
-  abort "Run 'sudo fdesetup enable -user \"$USER\"' for full-disk encryption."
-fi
+#logn "Checking full-disk encryption status:"
+#VAULT_MSG="FileVault is (On|Off, but will be enabled after the next restart)."
+#if fdesetup status | grep $Q -E "$VAULT_MSG"; then
+# logk
+#elif [ ! $MACOS ] || [ -n "$STRAP_CI" ]; then
+# echo
+# logn "Skipping full-disk encryption."
+#elif [ -n "$STRAP_INTERACTIVE" ]; then
+# echo
+# log "Enabling full-disk encryption on next reboot:"
+# sudo_askpass fdesetup enable -user "$USER" |
+#   tee ~/Desktop/"FileVault Recovery Key.txt"
+# logk
+#else
+# echo
+# abort "Run 'sudo fdesetup enable -user \"$USER\"' for full-disk encryption."
+#fi
 
 # Set up Xcode Command Line Tools.
-install_xcode_clt() {
-  if ! [ -f "/Library/Developer/CommandLineTools/usr/bin/git" ]; then
-    log "Installing the Xcode Command Line Tools:"
-    CLT_STRING=".com.apple.dt.CommandLineTools.installondemand.in-progress"
-    CLT_PLACEHOLDER="/tmp/$CLT_STRING"
-    sudo_askpass touch "$CLT_PLACEHOLDER"
-    CLT_PACKAGE=$(softwareupdate -l |
-      grep -B 1 "Command Line Tools" |
-      awk -F"*" '/^ *\*/ {print $2}' |
-      sed -e 's/^ *Label: //' -e 's/^ *//' |
-      sort -V |
-      tail -n1)
-    sudo_askpass softwareupdate -i "$CLT_PACKAGE"
-    sudo_askpass rm -f "$CLT_PLACEHOLDER"
-    if ! [ -f "/Library/Developer/CommandLineTools/usr/bin/git" ]; then
-      if [ -n "$STRAP_INTERACTIVE" ]; then
-        echo
-        logn "Requesting user install of Xcode Command Line Tools:"
-        xcode-select --install
-      else
-        echo
-        abort "Install Xcode Command Line Tools with 'xcode-select --install'."
-      fi
-    fi
-    logk
-  fi
-}
+#install_xcode_clt() {
+# if ! [ -f "/Library/Developer/CommandLineTools/usr/bin/git" ]; then
+#   log "Installing the Xcode Command Line Tools:"
+#   CLT_STRING=".com.apple.dt.CommandLineTools.installondemand.in-progress"
+#   CLT_PLACEHOLDER="/tmp/$CLT_STRING"
+#   sudo_askpass touch "$CLT_PLACEHOLDER"
+#   CLT_PACKAGE=$(softwareupdate -l |
+#     grep -B 1 "Command Line Tools" |
+#     awk -F"*" '/^ *\*/ {print $2}' |
+#     sed -e 's/^ *Label: //' -e 's/^ *//' |
+#     sort -V |
+#     tail -n1)
+#   sudo_askpass softwareupdate -i "$CLT_PACKAGE"
+#   sudo_askpass rm -f "$CLT_PLACEHOLDER"
+#   if ! [ -f "/Library/Developer/CommandLineTools/usr/bin/git" ]; then
+#     if [ -n "$STRAP_INTERACTIVE" ]; then
+#       echo
+#       logn "Requesting user install of Xcode Command Line Tools:"
+#       xcode-select --install
+#     else
+#       echo
+#       abort "Install Xcode Command Line Tools with 'xcode-select --install'."
+#     fi
+#   fi
+#   logk
+# fi
+#}
+#
+#check_xcode_license() {
+# if /usr/bin/xcrun clang 2>&1 | grep $Q license; then
+#   if [ -n "$STRAP_INTERACTIVE" ]; then
+#     logn "Asking for Xcode license confirmation:"
+#     sudo_askpass xcodebuild -license
+#     logk
+#   else
+#     abort "Run 'sudo xcodebuild -license' to agree to the Xcode license."
+#   fi
+# fi
+#}
 
-check_xcode_license() {
-  if /usr/bin/xcrun clang 2>&1 | grep $Q license; then
-    if [ -n "$STRAP_INTERACTIVE" ]; then
-      logn "Asking for Xcode license confirmation:"
-      sudo_askpass xcodebuild -license
-      logk
-    else
-      abort "Run 'sudo xcodebuild -license' to agree to the Xcode license."
-    fi
-  fi
-}
-
-if [ "$MACOS" -gt 0 ]; then
-  install_xcode_clt
-  check_xcode_license
-else
-  log "Not macOS. Xcode CLT install and license check skipped."
-fi
+#if [ "$MACOS" -gt 0 ]; then
+# install_xcode_clt
+# check_xcode_license
+#else
+# log "Not macOS. Xcode CLT install and license check skipped."
+#fi
 
 logn "Configuring Git:"
 if [ -n "$STRAP_GIT_NAME" ] && ! git config user.name >/dev/null; then

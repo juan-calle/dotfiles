@@ -88,7 +88,6 @@ COMPLETION_WAITING_DOTS="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
     fig
-    fzf
     git
     npm
     node
@@ -96,13 +95,11 @@ plugins=(
     heroku
     macos
     zsh-nvm
-    thefuck
     command-not-found
     zsh-interactive-cd
     zsh-navigation-tools
-    zsh-syntax-highlighting
-    zsh-better-npm-completion
     httpie
+    fzf
     # zsh-autosuggestions
 )
 
@@ -174,13 +171,15 @@ alias zr="source ~/.zshrc"
 
 export GPG_TTY=$(tty)
 
-export PATH="$PATH:/Users/Juan/.kit/bin"
+export PATH="$PATH:/Users/juan.calle/.kit/bin"
 
 typeset -U PATH
 
-export PATH=$PATH:/Users/Juan/.spicetify
+export PATH=$PATH:/Users/juan.calle/.spicetify
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
 # Fig post block. Keep at the bottom of this file.
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"

@@ -6,18 +6,16 @@ tap "homebrew/core"
 tap "homebrew/services"
 
 ### packages for work and personal use
-# brew "bash"
-# brew "deno" # macOS-only - Secure runtime for JavaScript and TypeScript
+brew "peek"
+brew "expressvpn"
 brew "gh" # GitHub command-line tool
-brew "git"# Distributed revision control system
-# brew "gnupg"
-#brew "gnu-sed"
-#brew "grep"
+brew "gnupg"
 brew "curl" # Get a file from an HTTP, HTTPS or FTP server
 brew "mas" # macOS-only
-# brew 'nginx'# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
-# brew "pinentry" # Passphrase entry dialog utilizing the Assuan protocol
-# brew "pipx" # Execute binaries from Python packages in isolated environments
+brew 'nginx'# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
+brew "pinentry" # Passphrase entry dialog utilizing the Assuan protocol
+brew "pipx" # Execute binaries from Python packages in isolated environments
+brew "pyenv" # Execute binaries from Python packages in isolated environments
 # brew "python" # Pretty-print tabular data in Python
 brew "aria2" # Download with resuming and segmented downloading
 #brew "shfmt" # Autoformat shell script source code
@@ -44,13 +42,13 @@ brew 'mackup' # Keep your Mac's application settings in sync
 # Casks for work and personal use
 cask "amphetamine"
 cask "visual-studio-code" # Fully naative from 1.54 ✅
-cask "bettertouchtool" # Zoom BTT fully supported from version 3.502 ✅
+# cask "bettertouchtool" # Zoom BTT fully supported from version 3.502 ✅
 #cask "firefox" # Firefox fully native ✅
 #cask "firefox-developer-edition" # Firefox fully native ✅
-cask "google-chrome" # Chrome fully supported from version 87 ✅
+#cask "google-chrome" # Chrome fully supported from version 87 ✅
 #cask "google-chrome-dev" # Chrome fully supported from version 87 ✅
-cask "notion" # Notion fully native ✅
-cask "rectangle" # Rectangle full native ✅
+#cask "notion" # Notion fully native ✅
+#cask "rectangle" # Rectangle full native ✅
 cask "slack" # Slack fully native from 4.13.0 ✅
 #cask "tower" # Full native support from 6 ✅
 #cask "typora" # Fully supported from version 0.9.9.36 ✅
@@ -58,16 +56,22 @@ cask "vlc" # vlc full native from 3.0.12 ✅
 cask "iterm2" # Fully naative from 3.4.0 ✅
 cask "brave-browser" # Full Native Apple Silicon Support ✅
 cask "dropbox"
-cask "alfred3"
+cask "raycast"
+cask "alfred"
 cask "boop"
-cask "calibre" # Compatibility through Rosetta2 🌹
+cask "gitkraken"
+cask "postico"
+cask "fig"
+cask "monitorcontrol"
+cask "setapp"
+#cask "calibre" # Compatibility through Rosetta2 🌹
 cask "discord" # Compatibility through Rosetta2 🌹
 #cask "github" # Compatibility through Rosetta2 🌹
-cask "nordvpn" # Compatibility through Rosetta2 🌹
+#cask "nordvpn" # Compatibility through Rosetta2 🌹
 cask "spotify" # Compatibility through Rosetta2 🌹
-cask "transmission" # Compatibility through Rosetta2 🌹
+#cask "transmission" # Compatibility through Rosetta2 🌹
 cask "whatsapp" # Compatibility through Rosetta2 🌹
-cask "zoom" # Compatibility through Rosetta2 🌹
+#cask "zoom" # Compatibility through Rosetta2 🌹
 
 # MacCleaner 2 Pro
 # Dash fully supported from version 6 ✅
@@ -81,3 +85,4 @@ cask "zoom" # Compatibility through Rosetta2 🌹
 # mas install 409183694 # "keynote"
 # mas install 409203825 # "numbers"
 # mas install 40920154 # "pages"
+mas install 937984704 # "amphetamine"
