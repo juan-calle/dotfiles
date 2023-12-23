@@ -85,4 +85,4 @@ cask "whatsapp" # Compatibility through Rosetta2 🌹
 # mas install 409183694 # "keynote"
 # mas install 409203825 # "numbers"
 # mas install 40920154 # "pages"
-mas install 937984704 # "amphetamine"
+# mas install 937984704 # "amphetamine"
