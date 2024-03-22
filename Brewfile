@@ -6,8 +6,7 @@ tap "homebrew/core"
 tap "homebrew/services"
 
 ### packages for work and personal use
-brew "peek"
-brew "expressvpn"
+# brew "peek"
 brew "gh" # GitHub command-line tool
 brew "gnupg"
 brew "curl" # Get a file from an HTTP, HTTPS or FTP server
@@ -40,7 +39,9 @@ brew 'mackup' # Keep your Mac's application settings in sync
 #brew "mp4v2" # Read, create, and modify MP4 files
 
 # Casks for work and personal use
+cask "docker"
 cask "amphetamine"
+cask "expressvpn"
 cask "visual-studio-code" # Fully naative from 1.54 ✅
 # cask "bettertouchtool" # Zoom BTT fully supported from version 3.502 ✅
 #cask "firefox" # Firefox fully native ✅

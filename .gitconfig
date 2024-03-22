@@ -1,5 +1,5 @@
 [core]
-  excludesfile = /Users/jc/.gitignore_global
+	excludesfile = /Users/juan.calle/.gitignore
   editor = code -w
   autocrlf = false
 [user]

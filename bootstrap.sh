@@ -386,7 +386,7 @@ run_brew_installs() {
     brew $CUSTOM_BREW_COMMAND
     logk
   fi
-}
+} 
 
 if [ "$MACOS" -gt 0 ]; then
   RAW="https://raw.githubusercontent.com"
