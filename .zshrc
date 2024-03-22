@@ -8,15 +8,16 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
 fi
 
 # If you come from bash you might have to change your $PATH.
-# export PATH=$HOME/bin:/usr/local/bin:$PATH
+export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh/"
 export REDO_HISTORY_PATH="$HOME/.zsh_history"
 export REDO_EDITOR="code"
-export STRAP_GIT_EMAIL="juancmcalle@gmail.com"
+export STRAP_GIT_EMAIL="8818957+juan-calle@users.noreply.github.com"
 export STRAP_GIT_NAME="Juan Calle"
 export STRAP_GIT_USER="juan-calle"
+# export FZF_BASE="/.oh-my-zsh/plugins/fzf"
 JIRA_API_TOKEN=$JIRA_API_TOKEN
 # bindkey -s '^e' 'redo^M'
 
@@ -99,7 +100,7 @@ plugins=(
     zsh-interactive-cd
     zsh-navigation-tools
     httpie
-    fzf
+    # fzf
     # zsh-autosuggestions
 )
 
@@ -171,15 +172,43 @@ alias zr="source ~/.zshrc"
 
 export GPG_TTY=$(tty)
 
-export PATH="$PATH:/Users/juan.calle/.kit/bin"
+export PATH="$PATH:$HOME/.kit/bin"
 
 typeset -U PATH
 
-export PATH=$PATH:/Users/juan.calle/.spicetify
+export PATH=$PATH:$HOME/.spicetify
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 export PATH="/usr/local/opt/openjdk/bin:$PATH"
 
+# Created by `pipx` on 2023-12-23 06:18:28
+export PATH="$PATH:$HOME/Library/Python/3.9/bin"
+
+# Created by `pipx` on 2023-12-23 06:18:33
+export PATH="$PATH:$HOME/.local/bin"
+export PATH="/opt/homebrew/opt/openjdk/bin:$PATH"
+export PATH="/opt/homebrew/opt/llvm/bin:$PATH"
+
+export PYENV_ROOT="$HOME/.pyenv"
+[[ -d $PYENV_ROOT/bin ]] && export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init -)"
 # Fig post block. Keep at the bottom of this file.
+export PATH="/opt/homebrew/opt/libpq/bin:$PATH"
 [[ -f "$HOME/.fig/shell/zshrc.post.zsh" ]] && builtin source "$HOME/.fig/shell/zshrc.post.zsh"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/opt/homebrew/Caskroom/miniconda/base/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh" ]; then
+        . "/opt/homebrew/Caskroom/miniconda/base/etc/profile.d/conda.sh"
+    else
+        export PATH="/opt/homebrew/Caskroom/miniconda/base/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
+
