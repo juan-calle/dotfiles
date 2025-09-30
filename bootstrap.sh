@@ -326,38 +326,38 @@ if [ -n "$STRAP_GITHUB_USER" ]; then
   fi
 fi
 
-install_homebrew() {
-  logn "Installing Homebrew:"
-  HOMEBREW_PREFIX="$(brew --prefix 2>/dev/null || true)"
-  [ -n "$HOMEBREW_PREFIX" ] || HOMEBREW_PREFIX="$DEFAULT_HOMEBREW_PREFIX"
-  [ -d "$HOMEBREW_PREFIX" ] || sudo_askpass mkdir -p "$HOMEBREW_PREFIX"
-  sudo_askpass chown "root:wheel" "$HOMEBREW_PREFIX" 2>/dev/null || true
-  (
-    cd "$HOMEBREW_PREFIX"
-    sudo_askpass mkdir -p Cellar Frameworks bin etc include lib opt sbin share var
-    sudo_askpass chown -R "$USER:admin" \
-      Cellar Frameworks bin etc include lib opt sbin share var
-  )
-  HOMEBREW_REPOSITORY="$(brew --repository 2>/dev/null || true)"
-  [ -n "$HOMEBREW_REPOSITORY" ] || HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX/Homebrew"
-  [ -d "$HOMEBREW_REPOSITORY" ] || sudo_askpass mkdir -p "$HOMEBREW_REPOSITORY"
-  sudo_askpass chown -R "$USER:admin" "$HOMEBREW_REPOSITORY"
-  if [ $HOMEBREW_PREFIX != $HOMEBREW_REPOSITORY ]; then
-    ln -sf "$HOMEBREW_REPOSITORY/bin/brew" "$HOMEBREW_PREFIX/bin/brew"
-  fi
-  export GIT_DIR="$HOMEBREW_REPOSITORY/.git" GIT_WORK_TREE="$HOMEBREW_REPOSITORY"
-  git init $Q
-  git config remote.origin.url "https://github.com/Homebrew/brew"
-  git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
-  git fetch $Q --tags --force
-  git reset $Q --hard origin/master
-  unset GIT_DIR GIT_WORK_TREE
-  logk
-  export PATH="$HOMEBREW_PREFIX/bin:$PATH"
-  log "Updating Homebrew:"
-  brew update
-  logk
-}
+# install_homebrew() {
+#   logn "Installing Homebrew:"
+#   HOMEBREW_PREFIX="$(brew --prefix 2>/dev/null || true)"
+#   [ -n "$HOMEBREW_PREFIX" ] || HOMEBREW_PREFIX="$DEFAULT_HOMEBREW_PREFIX"
+#   [ -d "$HOMEBREW_PREFIX" ] || sudo_askpass mkdir -p "$HOMEBREW_PREFIX"
+#   sudo_askpass chown "root:wheel" "$HOMEBREW_PREFIX" 2>/dev/null || true
+#   (
+#     cd "$HOMEBREW_PREFIX"
+#     sudo_askpass mkdir -p Cellar Frameworks bin etc include lib opt sbin share var
+#     sudo_askpass chown -R "$USER:admin" \
+#       Cellar Frameworks bin etc include lib opt sbin share var
+#   )
+#   HOMEBREW_REPOSITORY="$(brew --repository 2>/dev/null || true)"
+#   [ -n "$HOMEBREW_REPOSITORY" ] || HOMEBREW_REPOSITORY="$HOMEBREW_PREFIX/Homebrew"
+#   [ -d "$HOMEBREW_REPOSITORY" ] || sudo_askpass mkdir -p "$HOMEBREW_REPOSITORY"
+#   sudo_askpass chown -R "$USER:admin" "$HOMEBREW_REPOSITORY"
+#   if [ $HOMEBREW_PREFIX != $HOMEBREW_REPOSITORY ]; then
+#     ln -sf "$HOMEBREW_REPOSITORY/bin/brew" "$HOMEBREW_PREFIX/bin/brew"
+#   fi
+#   export GIT_DIR="$HOMEBREW_REPOSITORY/.git" GIT_WORK_TREE="$HOMEBREW_REPOSITORY"
+#   git init $Q
+#   git config remote.origin.url "https://github.com/Homebrew/brew"
+#   git config remote.origin.fetch "+refs/heads/*:refs/remotes/origin/*"
+#   git fetch $Q --tags --force
+#   git reset $Q --hard origin/master
+#   unset GIT_DIR GIT_WORK_TREE
+#   logk
+#   export PATH="$HOMEBREW_PREFIX/bin:$PATH"
+#   log "Updating Homebrew:"
+#   brew update
+#   logk
+# }
 
 run_brew_installs() {
   if ! command -v brew &>/dev/null; then
@@ -386,7 +386,7 @@ run_brew_installs() {
     brew $CUSTOM_BREW_COMMAND
     logk
   fi
-} 
+}
 
 if [ "$MACOS" -gt 0 ]; then
   RAW="https://raw.githubusercontent.com"

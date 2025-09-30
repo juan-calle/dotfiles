@@ -2,17 +2,24 @@
 	excludesfile = /Users/juan.calle/.gitignore
   editor = code -w
   autocrlf = false
+# [user]
+# 	name = Juan Calle
+# 	email = 8818957+juan-calle@users.noreply.github.com
+#   username = juan-calle
+# 	signingkey = B8EC03B00F5F50FE
 [user]
 	name = Juan Calle
-	email = 8818957+juan-calle@users.noreply.github.com
+	email = juancmcalle@gmail.com
   username = juan-calle
-	signingkey = B8EC03B00F5F50FE
+	# signingkey = B8EC03B00F5F50FE
+	signingkey = EEA8495EEF7E5C7B
 [init]
   defaultBranch = main
 [github]
   user = juan-calle
 [push]
   default = simple
+	autoSetupRemote = true
 [credential]
   helper = osxkeychain
 [filter "lfs"]
@@ -27,7 +34,7 @@
   cob = checkout -b
   cm = !git add -A && git commit -m
   save = !git add -A && git commit -m 'chore(save-point): SAVE-POINT'
-  wip = !git add -u && git commit -m "chore(wip): WIP"
+  wip = !git add -u && git commit -m 'chore(wip): WIP' --no-verify
   undo = reset HEAD~1 --mixed
   amend = commit -a --amend
   wipe = !git add -A && git commit -qm 'chore(wipe-savepoint): WIPE SAVEPOINT' && git reset HEAD~1 --hard
@@ -43,27 +50,19 @@
   rename = "!moveit() { git push origin --delete `git branch --show-current` || true; git branch -m $1; git push --set-upstream origin $1; }; moveit"
   remotedelete = "push --delete origin"
   fixup-squash = "!EDITOR=true git rebase --autosquash -i $1 #"
-  fixup = "!EDITOR=true git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -I {} sh -c 'git commit --fixup "$1" && git rebase -i --autosquash "$1^" #' sh {}"
+  fixup = "!EDITOR=true git log -n 50 --pretty=format:'%h %s' --no-merges | fzf | cut -c -7 | xargs -I {} sh -c 'git commit --fixup "$1" --no-verify && git rebase -i --autosquash "$1^" #' sh {}"
 [gpg]
 	program = gpg
-	format = openpgp
+  format = openpgp
 [commit]
 	gpgsign = true
 [tag]
 	forceSignAnnotated = true
-[difftool "Kaleidoscope"]
-	cmd = ksdiff --partial-changeset --relative-path \"$MERGED\" -- \"$LOCAL\" \"$REMOTE\"
-[mergetool "Kaleidoscope"]
-	cmd = ksdiff --merge --output \"$MERGED\" --base \"$BASE\" -- \"$LOCAL\" --snapshot \"$REMOTE\" --snapshot
-	trustExitCode = true
-[diff]
-	tool = Kaleidoscope
 [difftool]
 	prompt = true
 	trustExitCode = true
-[merge]
-	tool = Kaleidoscope
 [mergetool]
 	prompt = true
+  trustExitCode = true
 [rebase]
 	updateRefs = true

@@ -28,3 +28,6 @@ secret.key
 *.mp4
 .iterm2
 **/vite.config.ts
+**/.vscode/
+**/.github/instructions
+**/.github/prompts
