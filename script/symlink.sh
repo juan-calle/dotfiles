@@ -31,14 +31,6 @@ if symlink_repo_dotfiles; then
   echo "-> Symlinking successful. Finishing up..."
   chmod 700 "$HOME"/.gnupg
   chmod 600 "$HOME"/.gnupg/gpg.conf
-  # Restart Karabiner after symlinking config
-  # https://karabiner-elements.pqrs.org/docs/manual/misc/configuration-file-path/
-  KARABINER=gui/"$(id -u)"/org.pqrs.karabiner.karabiner_console_user_server
-  if launchctl kickstart "$KARABINER" &>/dev/null; then
-    launchctl kickstart -k "$KARABINER"
-  else
-    echo "-> Skipping Karabiner restart."
-  fi
   echo "-> Finished."
 else
   echo "-> Symlinking unsuccessful."

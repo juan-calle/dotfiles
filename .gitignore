@@ -29,5 +29,3 @@ secret.key
 .iterm2
 **/vite.config.ts
 **/.vscode/
-**/.github/instructions
-**/.github/prompts
